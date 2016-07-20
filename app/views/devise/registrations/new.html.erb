@@ -1,0 +1,48 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="form-group">
+   <%= f.text_field :name, autofocus: true, class:"form-control", placeholder: "First & Last Name"  %>
+ </div>
+
+   <div class="form-group">
+   <strong>Your Birthday: </strong><%= f.date_field :birthday, class:"form-control"  %>
+ </div>
+
+ <div class="form-group">
+   <%= f.text_field :username, class:"form-control", placeholder: "Username"  %>
+ </div>
+
+ <div class="form-group">
+   <%= f.email_field :email, class:"form-control", placeholder: "Your Email"  %>
+ </div>
+
+ <div class="form-group">
+   <%= f.label :password %>
+   <% if @minimum_password_length %>
+   <em>(<%= @minimum_password_length %> characters minimum)</em>
+   <% end %><br />
+   <%= f.password_field :password, autocomplete: "off", class:"form-control" %>
+ </div>
+
+ <div class="form-group">
+   <%= f.label :password_confirmation %><br />
+   <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %>
+ </div>
+
+ <div class="actions">
+   <%= f.submit "Sign up" %>
+ </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+How Do I Get There?
+Just as we made a button to end our user session, let's make a button to bring us to Devise's User edit page:
+
+<div class="container">
+ <div class="pull-right">
+   <% if user_signed_in? %>
+    <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %> <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+   <% end %>
+ </div>
